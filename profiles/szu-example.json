@@ -1,0 +1,16 @@
+{
+  "name": "SZU example — verify before use",
+  "base_url": "http://net.szu.edu.cn",
+  "ac_id": "12",
+  "username_suffix": "@hlw",
+  "challenge_path": "/cgi-bin/get_challenge",
+  "portal_path": "/cgi-bin/srun_portal",
+  "n": "200",
+  "type": "1",
+  "enc_ver": "srun_bx1",
+  "base64_alphabet": "LVoJPiCN2R8G90yg+hmFHuacZ1OWMnrsSTXkYpUq/3dlbfKwv6xztjI7DeBE45QA",
+  "client_ip": "",
+  "probe_url": "http://www.msftconnecttest.com/connecttest.txt",
+  "probe_status": 200,
+  "probe_text": "Microsoft Connect Test"
+}
