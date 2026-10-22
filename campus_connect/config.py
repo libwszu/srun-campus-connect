@@ -17,7 +17,10 @@ class ProfileError(ValueError):
 def validate_url(value, *, portal=False):
     if any(ord(c) < 33 for c in value.strip()):
         raise ProfileError("Enter an HTTP or HTTPS URL without embedded credentials.")
-    parsed = urlsplit(value.strip())
+    try:
+        parsed = urlsplit(value.strip())
+    except ValueError:
+        raise ProfileError("Enter an HTTP or HTTPS URL without embedded credentials.") from None
     try:
         parsed.port
     except ValueError:
@@ -67,7 +70,10 @@ class CampusProfile:
         validate_url(self.base_url, portal=True)
         validate_url(self.probe_url)
         for path in (self.challenge_path, self.portal_path):
-            parsed = urlsplit(path)
+            try:
+                parsed = urlsplit(path)
+            except ValueError:
+                raise ProfileError("API paths must start with / and stay on the configured server.") from None
             if not path.startswith("/") or path.startswith("//") or parsed.scheme or parsed.netloc or parsed.query or parsed.fragment:
                 raise ProfileError("API paths must start with / and stay on the configured server.")
         if not self.ac_id.isdigit() or not self.n.isdigit() or not self.type.isdigit():

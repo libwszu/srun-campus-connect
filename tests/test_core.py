@@ -34,6 +34,7 @@ class ProfileTests(unittest.TestCase):
             {"base_url": "https://example.org/?ac_id=1"}, {"portal_path": "//other.example.org/login"},
             {"ac_id": "not-a-number"}, {"enc_ver": "unsupported"}, {"base64_alphabet": "A" * 64},
             {"client_ip": "invalid-ip"}, {"probe_status": 302}, {"probe_text": "   "},
+            {"base_url": "https://["}, {"base_url": "https://example.org:70000"}, {"portal_path": "//["},
         ]
         for values in invalid:
             with self.subTest(values=values), self.assertRaises(ProfileError):
